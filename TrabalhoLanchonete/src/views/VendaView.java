@@ -65,10 +65,9 @@ public class VendaView {
         exibirLanches();
         System.out.println("");
         System.out.println("----------LANCHES----------");
-        System.out.println("1 - Cliente cadastrado");
-        System.out.println("2 - Cliente nao cadastrado");
-        System.out.println("3 - Valor total das vendas realizadas");
-        System.out.println("4 - Voltar");
+        System.out.println("1 - Efetuar venda");
+        System.out.println("2 - Valor total das vendas realizadas");
+        System.out.println("3 - Voltar");
         System.out.print("Informe a opção desejada: ");
         int op = scan.nextInt();
         scan.nextLine();
@@ -83,16 +82,13 @@ public class VendaView {
 
             switch (opcao) {
                 case 1:
-                    clienteCadastrado();
+                    criarVenda();
                     break;
                 case 2:
                     clienteNaoCadastrado();
                     break;
-                case 3:
-                    valorTotalVendas();
-                    break;
             }
-        } while (opcao != 4);
+        } while (opcao != 3);
     }
 
     private void exibirLanches() {
@@ -121,11 +117,10 @@ public class VendaView {
         
         // cadastrar cliente ou nao
         Venda v = new Venda();
-        System.out.println("Deseja se identificar? (S/N)");
-        String opcao
-        if (true) {
+        System.out.print("Deseja se identificar? (S/N): ");
+        String opcao = scan.nextLine();
+        if (opcao == "s") {
             
-
             Scanner scan = new Scanner(System.in);
             System.out.print("Digite o codigo do cliente: ");
             int codCliente = scan.nextInt();
@@ -135,9 +130,11 @@ public class VendaView {
             if (v.getCliente() != null) {
 
             }
-        }
-        v.setCliente(cliente);
+        }else{
+            
         fazerPedido(v);
+        //v.setCliente();
+        }
     }
 
     private void fazerPedido(Venda v) {
@@ -151,7 +148,7 @@ public class VendaView {
                 scan.nextLine();
 
                 Lanche l = controllers.LanchesController.buscarPorCodigo(codLanche);
-
+                
                 if (l != null) {
                     
                     v.getLanches().add(l);
