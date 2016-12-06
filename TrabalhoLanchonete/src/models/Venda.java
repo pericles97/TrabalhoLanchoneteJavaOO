@@ -1,12 +1,14 @@
 
 package models;
 
+import java.util.List;
+
 public class Venda {
     private int codigo;
     private int qtdLanche;
     private double valorVenda;
     private Cliente cliente;
-    private Lanche lanche;
+    private List<Lanche> lanches;
 
     public int getCodigo() {
         return codigo;
@@ -25,12 +27,12 @@ public class Venda {
         }
 
     public double getValorVenda() {
-        return valorVenda;
-    }
-
-        public void setValorVenda(double valorVenda) {
-            this.valorVenda = valorVenda;
+        double precoFinal = 0;
+        for(Lanche l : lanches){
+            precoFinal += l.getPreco();
         }
+        return precoFinal;
+    }
 
     public Cliente getCliente() {
         return cliente;
@@ -40,14 +42,9 @@ public class Venda {
             this.cliente = cliente;
         }
 
-    public Lanche getLanche() {
-        return lanche;
+    public List<Lanche> getLanches() {
+        return lanches;
     }
-
-        public void setLanche(Lanche lanche) {
-            this.lanche = lanche;
-        }
-    
     
     
 }
