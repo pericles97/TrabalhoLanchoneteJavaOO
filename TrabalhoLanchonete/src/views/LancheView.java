@@ -17,7 +17,7 @@ public class LancheView {
         System.out.println("3 - Alterar Lanche por codigo");
         System.out.println("4 - Excluir Lanche por codigo");
         System.out.println("5 - Pesquisar Lanche por codigo");
-        System.out.println("4 - Voltar");
+        System.out.println("6 - Voltar");
         System.out.print("Informe a opção desejada: ");
         int op = scan.nextInt();
         scan.nextLine();
