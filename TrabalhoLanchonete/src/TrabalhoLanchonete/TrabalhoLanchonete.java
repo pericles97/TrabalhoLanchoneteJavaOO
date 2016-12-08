@@ -16,7 +16,11 @@ public class TrabalhoLanchonete {
         BancoDadosLanchonete.inicializarBancoVenda();
         
         MenuInicioView menu = new MenuInicioView();
-        menu.exibirMenu();
+        try{
+            menu.exibirMenu();
+        }catch(Exception erro){
+            System.out.println("Erro: "+ erro);
+        }
         
         /*ClienteView clienteView = new ClienteView();
         LancheView lancheView = new LancheView();

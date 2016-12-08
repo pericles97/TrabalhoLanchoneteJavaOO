@@ -32,13 +32,25 @@ public class MenuInicioView {
                     opcao = inicio();
                     switch(opcao){
                         case 1:
-                            clienteView.exibirMenuCadastroCliente();
+                            try{
+                                clienteView.exibirMenuCadastroCliente();
+                            }catch(Exception erro){
+                                System.out.println("Erro: "+ erro);
+                            }
                             break;
                         case 2:
-                            lancheView.exibirMenuCadastroLanche();
+                            try{
+                                lancheView.exibirMenuCadastroLanche();
+                            }catch(Exception erro){
+                                System.out.println("Erro: "+ erro);
+                            }
                             break;
                         case 3:
-                            vendaView.exibirMenuVendas();
+                            try{
+                                vendaView.exibirMenuVendas();
+                            }catch(Exception erro){
+                                System.out.println("Erro: "+ erro);
+                            }
                             break;
                     }
                 } while (opcao != 4);  
