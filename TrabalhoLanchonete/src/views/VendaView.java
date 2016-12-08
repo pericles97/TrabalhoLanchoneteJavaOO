@@ -117,9 +117,9 @@ public class VendaView {
         
         // cadastrar cliente ou nao
         Venda v = new Venda();
-        System.out.print("Deseja se identificar? (S/N): ");
-        String opcao = scan.nextLine();
-        if (opcao == "s") {
+        System.out.print("Deseja se identificar? (S=1 / N=0): ");
+        int opcao = scan.nextInt();
+        if (opcao == 1) {
             
             //se o cliente tem cadastro, pesquisa por codigo
             Scanner scan = new Scanner(System.in);
@@ -128,17 +128,20 @@ public class VendaView {
             scan.nextLine();
             Cliente c = controllers.ClientesController.buscarPorCodigo(codCliente);
             if (v.getCliente() != null) {
+                v.setCliente(c);
                 fazerPedido(v);
+                double totalCliente = (v.getValorVenda()*10) / 100;
+                System.out.println("O total a ser pago é de: R$"+ totalCliente);
             }
-        }else if(opcao == "n"){
+        }else if(opcao == 01){
             
         fazerPedido(v);
         //v.setCliente();
         }
     }
 
-    private void fazerPedido(Venda v) {
-
+    public double fazerPedido(Venda v) {
+        double totalVenda = 0;
         if (v.getCliente() != null) {
 
             int codLanche = 0;
@@ -150,19 +153,19 @@ public class VendaView {
                 Lanche l = controllers.LanchesController.buscarPorCodigo(codLanche);
                 
                 if (l != null) {
-                    
+                    totalVenda = totalVenda + v.getValorVenda();
                     v.getLanches().add(l);
                     BancoDadosLanchonete.getTabelaVenda().add(v);
                     System.out.println("Compra realizada com sucesso!");
-                } else {
+                } /*else {
                     System.out.println("Lanche não cadastrado");
-                }
-
+                }*/
             } while (codLanche != 0);
 
         } else {
             System.out.println("Cliente não cadastrado");
         }
+        return totalVenda;
     }
 
 }
