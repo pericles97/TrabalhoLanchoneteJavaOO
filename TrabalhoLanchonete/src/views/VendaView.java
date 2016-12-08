@@ -121,16 +121,16 @@ public class VendaView {
         String opcao = scan.nextLine();
         if (opcao == "s") {
             
+            //se o cliente tem cadastro, pesquisa por codigo
             Scanner scan = new Scanner(System.in);
             System.out.print("Digite o codigo do cliente: ");
             int codCliente = scan.nextInt();
             scan.nextLine();
             Cliente c = controllers.ClientesController.buscarPorCodigo(codCliente);
-            //se o cliente tem cadastro, pesquisa por codigo
             if (v.getCliente() != null) {
-
+                fazerPedido(v);
             }
-        }else{
+        }else if(opcao == "n"){
             
         fazerPedido(v);
         //v.setCliente();
