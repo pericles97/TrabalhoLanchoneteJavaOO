@@ -38,7 +38,6 @@ public class VendaView {
                     v.setCliente(c);
                     fazerPedido(v);
                     
-                    //Venda v = new Venda();
                     v.setCliente(c);
                     v.getLanches().add(l);
 
