@@ -11,7 +11,7 @@ public class MenuInicioView {
         ClienteView clienteView = new ClienteView();
         LancheView lancheView = new LancheView();
         VendaView vendaView = new VendaView();
-        public int inicio(){
+        private int inicio(){
             Scanner scan = new Scanner(System.in);
             System.out.println("");
             System.out.println("---------Sistema Lanchonete-------------");
