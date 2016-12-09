@@ -119,6 +119,7 @@ public class VendaView {
         Venda v = new Venda();
         System.out.print("Deseja se identificar? (S=1 / N=0): ");
         int opcao = scan.nextInt();
+        scan.nextLine();
         if (opcao == 1) {
             
             //se o cliente tem cadastro, pesquisa por codigo
@@ -133,7 +134,7 @@ public class VendaView {
                 double totalCliente = (v.getValorVenda()*10) / 100;
                 System.out.println("O total a ser pago é de: R$"+ totalCliente);
             }
-        }else if(opcao == 01){
+        }else if(opcao == 0){
             
         fazerPedido(v);
         //v.setCliente();
@@ -142,9 +143,9 @@ public class VendaView {
 
     public double fazerPedido(Venda v) {
         double totalVenda = 0;
-        if (v.getCliente() != null) {
+        //if (v.getCliente() != null) {
 
-            int codLanche = 0;
+            int codLanche =0;
             do {
                 System.out.print("Digite o codigo do lanche: ");
                 codLanche = scan.nextInt();
@@ -153,18 +154,19 @@ public class VendaView {
                 Lanche l = controllers.LanchesController.buscarPorCodigo(codLanche);
                 
                 if (l != null) {
+                    
                     totalVenda = totalVenda + v.getValorVenda();
                     v.getLanches().add(l);
                     BancoDadosLanchonete.getTabelaVenda().add(v);
                     System.out.println("Compra realizada com sucesso!");
-                } /*else {
+                } else {
                     System.out.println("Lanche não cadastrado");
-                }*/
+                }
             } while (codLanche != 0);
 
-        } else {
-            System.out.println("Cliente não cadastrado");
-        }
+        /*} else {
+            System.out.println("Lanche não cadastrado");
+        }*/
         return totalVenda;
     }
 
