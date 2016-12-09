@@ -128,7 +128,8 @@ public class VendaView {
             int codCliente = scan.nextInt();
             scan.nextLine();
             Cliente c = controllers.ClientesController.buscarPorCodigo(codCliente);
-            if (v.getCliente() != null) {
+            if (c != null) {
+                //v.getCliente()
                 v.setCliente(c);
                 fazerPedido(v);
                 double totalCliente = (v.getValorVenda()*10) / 100;
