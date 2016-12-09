@@ -11,7 +11,8 @@ public class VendaView {
 
     Scanner scan = new Scanner(System.in);
 
-    private static void clienteCadastrado() {
+    private void clienteCadastrado() {
+        Venda v = new Venda();
         Scanner scan = new Scanner(System.in);
         System.out.print("Digite o codigo do cliente: ");
         int codCliente = scan.nextInt();
@@ -20,8 +21,11 @@ public class VendaView {
         Cliente c = controllers.ClientesController.buscarPorCodigo(codCliente);
 
         if (c != null) {
-
-            int codLanche = 0;
+            
+            v.setCliente(c);
+            fazerPedido(v);
+            
+           /* int codLanche = 0;
             do {
                 System.out.print("Digite o codigo do lanche: ");
                 codLanche = scan.nextInt();
@@ -30,7 +34,10 @@ public class VendaView {
                 Lanche l = controllers.LanchesController.buscarPorCodigo(codLanche);
 
                 if (l != null) {
-
+                    
+                    v.setCliente(c);
+                    fazerPedido(v);
+                    
                     Venda v = new Venda();
                     v.setCliente(c);
                     v.getLanches().add(l);
@@ -41,26 +48,15 @@ public class VendaView {
                     System.out.println("Lanche não cadastrado");
                 }
 
-            } while (codLanche != 0);
+            } while (codLanche != 0);*/
 
         } else {
             System.out.println("Cliente não cadastrado");
         }
 
     }
-
-    public void tabelaVenda() {
-
-        System.out.print("Informe a quantidade do lanche: ");
-        int qtdLanche = scan.nextInt();
-        scan.nextLine();
-    }
-
-    public void notaFiscal() {
-
-    }
-
-    public int Menu() {
+    
+    private int Menu() {
         System.out.println("");
         exibirLanches();
         System.out.println("");
@@ -82,6 +78,7 @@ public class VendaView {
 
             switch (opcao) {
                 case 1:
+                    //clienteCadastrado();
                     criarVenda();
                     break;
                 case 2:
@@ -105,12 +102,9 @@ public class VendaView {
     }
 
     private void clienteNaoCadastrado() {
-
+        
     }
 
-    private void valorTotalVendas() {
-
-    }
 
     private void criarVenda() {
         //Se o se identiificar 10% desconto, senao faz a compra normal
@@ -130,8 +124,8 @@ public class VendaView {
             Cliente c = controllers.ClientesController.buscarPorCodigo(codCliente);
             if (c != null) {
                 //v.getCliente()
-                v.setCliente(c);
-                fazerPedido(v);
+                /*v.setCliente(c);
+                fazerPedido(v);*/
                 double totalCliente = (v.getValorVenda()*10) / 100;
                 System.out.println("O total a ser pago é de: R$"+ totalCliente);
             }
@@ -142,7 +136,7 @@ public class VendaView {
         }
     }
 
-    public double fazerPedido(Venda v) {
+    private double fazerPedido(Venda v) {
         double totalVenda = 0;
         //if (v.getCliente() != null) {
 
@@ -155,7 +149,6 @@ public class VendaView {
                 Lanche l = controllers.LanchesController.buscarPorCodigo(codLanche);
                 
                 if (l != null) {
-                    
                     totalVenda = totalVenda + v.getValorVenda();
                     v.getLanches().add(l);
                     BancoDadosLanchonete.getTabelaVenda().add(v);

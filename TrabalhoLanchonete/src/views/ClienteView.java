@@ -10,7 +10,7 @@ public class ClienteView {
 
     public int Menu(){
         
-        System.out.println("----------GERENCIAR CLIENTES----------");;
+        System.out.println("----------GERENCIAR CLIENTES----------");
         System.out.println("1 - Cadastrar Cliente");
         System.out.println("2 - Exibir Clientes");
         System.out.println("3 - Alterar Cliente por codigo");
