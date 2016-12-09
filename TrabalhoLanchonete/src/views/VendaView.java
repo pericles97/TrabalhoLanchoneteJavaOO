@@ -25,7 +25,7 @@ public class VendaView {
             v.setCliente(c);
             fazerPedido(v);
             
-           /* int codLanche = 0;
+            int codLanche = 0;
             do {
                 System.out.print("Digite o codigo do lanche: ");
                 codLanche = scan.nextInt();
@@ -38,7 +38,7 @@ public class VendaView {
                     v.setCliente(c);
                     fazerPedido(v);
                     
-                    Venda v = new Venda();
+                    //Venda v = new Venda();
                     v.setCliente(c);
                     v.getLanches().add(l);
 
@@ -48,7 +48,7 @@ public class VendaView {
                     System.out.println("Lanche não cadastrado");
                 }
 
-            } while (codLanche != 0);*/
+            } while (codLanche != 0);
 
         } else {
             System.out.println("Cliente não cadastrado");
@@ -124,8 +124,8 @@ public class VendaView {
             Cliente c = controllers.ClientesController.buscarPorCodigo(codCliente);
             if (c != null) {
                 //v.getCliente()
-                /*v.setCliente(c);
-                fazerPedido(v);*/
+                v.setCliente(c);
+                //fazerPedido(v);
                 double totalCliente = (v.getValorVenda()*10) / 100;
                 System.out.println("O total a ser pago é de: R$"+ totalCliente);
             }
@@ -159,7 +159,7 @@ public class VendaView {
             } while (codLanche != 0);
 
         /*} else {
-            System.out.println("Lanche não cadastrado");
+            System.out.println("Cliente não cadastrado");
         }*/
         return totalVenda;
     }
