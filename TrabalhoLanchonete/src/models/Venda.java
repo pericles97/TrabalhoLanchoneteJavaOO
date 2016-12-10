@@ -38,18 +38,12 @@ public class Venda {
             precoFinal += l.getPreco();
         }
         
-        /*int codCliente = 0;
-        for (Cliente c : Clientes) {
-            codCliente = c.getCodigo();
-            Cliente cli = controllers.ClientesController.buscarPorCodigo(codCliente);
-        }
-        
-        if (codCliente != null) {
+        if (controllers.ClientesController.buscarPorCodigo(codigo) != null) {
             return precoFinal*10/100;
         }else{
             return precoFinal;
-        }*/
-        return precoFinal;
+        }
+        //return precoFinal;
     }
 
     public Cliente getCliente() {

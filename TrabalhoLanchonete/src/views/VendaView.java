@@ -162,11 +162,11 @@ public class VendaView {
         /*} else {
             System.out.println("Cliente não cadastrado");
         }*/
-        if (c != null) {
+        /*if ( != null) {
             return totalVenda*10/100;
         }else{
             return totalVenda;
-        }
-        //return totalVenda;
+        }*/
+        return totalVenda;
     }
 }
