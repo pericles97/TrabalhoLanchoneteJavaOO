@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import views.VendaView;
+import views.ClienteView;
 
 public class Venda {
     private int codigo;
@@ -13,6 +14,7 @@ public class Venda {
     private double valorVenda;
     private Cliente cliente;
     private List<Lanche> lanches;
+    private List<Cliente> Clientes;
 
     public int getCodigo() {
         return codigo;
@@ -36,8 +38,13 @@ public class Venda {
             precoFinal += l.getPreco();
         }
         
-        /*if (VendaView. != null) {
-            
+        /*int codCliente = 0;
+        for (Cliente c : Clientes) {
+            codCliente = c.getCodigo();
+            Cliente cli = controllers.ClientesController.buscarPorCodigo(codCliente);
+        }
+        
+        if (codCliente != null) {
             return precoFinal*10/100;
         }else{
             return precoFinal;

@@ -81,7 +81,7 @@ public class VendaView {
                     criarVenda();
                     break;
                 case 2:
-                    clienteNaoCadastrado();
+                    //clienteNaoCadastrado();
                     break;
             }
         } while (opcao != 3);
@@ -99,12 +99,12 @@ public class VendaView {
         }
         System.out.println("---");
     }
-
-    private void clienteNaoCadastrado() {
+    
+    private int buscarCliente(){
         
+        return 0;
     }
-
-
+    
     public void criarVenda() {
         //Se o se identiificar 10% desconto, senao faz a compra normal
         
@@ -122,8 +122,6 @@ public class VendaView {
             scan.nextLine();
             Cliente c = controllers.ClientesController.buscarPorCodigo(codCliente);
             if (c != null) {
-                
-                //v.getCliente()
                 v.setCliente(c);
                 fazerPedido(v);
             }
@@ -135,6 +133,7 @@ public class VendaView {
     }
 
     private double fazerPedido(Venda v) {
+        
         double totalVenda = 0;
         //if (v.getCliente() != null) {
 
@@ -157,12 +156,17 @@ public class VendaView {
                     System.out.println("Lanche não cadastrado");
                 }
             } while (codLanche != 0);
+            
             System.out.println("O total a ser pago é de: R$"+ totalVenda);
             System.out.println("Compra realizada com sucesso!");
         /*} else {
             System.out.println("Cliente não cadastrado");
         }*/
-        return totalVenda;
+        if (c != null) {
+            return totalVenda*10/100;
+        }else{
+            return totalVenda;
+        }
+        //return totalVenda;
     }
-
 }
