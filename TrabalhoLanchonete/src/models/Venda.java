@@ -1,7 +1,11 @@
 
 package models;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import views.VendaView;
 
 public class Venda {
     private int codigo;
@@ -31,7 +35,13 @@ public class Venda {
         for(Lanche l : lanches){
             precoFinal += l.getPreco();
         }
-        return precoFinal;
+        
+        if (VendaView. != null) {
+            
+            return precoFinal*10/100;
+        }else{
+            return precoFinal;
+        }
     }
 
     public Cliente getCliente() {
@@ -44,6 +54,10 @@ public class Venda {
 
     public List<Lanche> getLanches() {
         return lanches;
+    }
+    
+    public Venda(){
+        lanches = new ArrayList<Lanche>();
     }
     
     
