@@ -36,12 +36,13 @@ public class Venda {
             precoFinal += l.getPreco();
         }
         
-        if (VendaView. != null) {
+        /*if (VendaView. != null) {
             
             return precoFinal*10/100;
         }else{
             return precoFinal;
-        }
+        }*/
+        return precoFinal;
     }
 
     public Cliente getCliente() {
