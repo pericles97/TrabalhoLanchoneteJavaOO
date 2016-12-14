@@ -1,7 +1,9 @@
 package views;
 
 import banco.BancoDadosLanchonete;
+import java.text.DecimalFormat;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 import models.Cliente;
 import models.Lanche;
 import models.Venda;
@@ -10,6 +12,8 @@ import views.LancheView;
 public class VendaView {
 
     Scanner scan = new Scanner(System.in);
+
+    DecimalFormat df = new DecimalFormat("#.00");
 
     private void clienteCadastrado() {
         Venda v = new Venda();
@@ -21,10 +25,10 @@ public class VendaView {
         Cliente c = controllers.ClientesController.buscarPorCodigo(codCliente);
 
         if (c != null) {
-            
+
             v.setCliente(c);
-            fazerPedido(v);
-            
+            //fazerPedido(v);
+
             int codLanche = 0;
             do {
                 System.out.print("Digite o codigo do lanche: ");
@@ -34,10 +38,10 @@ public class VendaView {
                 Lanche l = controllers.LanchesController.buscarPorCodigo(codLanche);
 
                 if (l != null) {
-                    
+
                     v.setCliente(c);
-                    fazerPedido(v);
-                    
+                    //fazerPedido(v);
+
                     v.setCliente(c);
                     v.getLanches().add(l);
 
@@ -54,15 +58,14 @@ public class VendaView {
         }
 
     }
-    
+
     private int Menu() {
         System.out.println("");
         exibirLanches();
         System.out.println("");
         System.out.println("----------LANCHES----------");
         System.out.println("1 - Efetuar venda");
-        System.out.println("2 - Valor total das vendas realizadas");
-        System.out.println("3 - Voltar");
+        System.out.println("2 - Voltar");
         System.out.print("Informe a opção desejada: ");
         int op = scan.nextInt();
         scan.nextLine();
@@ -80,11 +83,8 @@ public class VendaView {
                     //clienteCadastrado();
                     criarVenda();
                     break;
-                case 2:
-                    //clienteNaoCadastrado();
-                    break;
             }
-        } while (opcao != 3);
+        } while (opcao != 2);
     }
 
     private void exibirLanches() {
@@ -100,21 +100,27 @@ public class VendaView {
         System.out.println("---");
     }
     
-    private int buscarCliente(){
+    public void totVenda(){
+        /*double totVenda = 0;
+        totVenda = totVenda + v.
+        for (Venda v : BancoDadosLanchonete.getTabelaVenda()) {
+            System.out.println("");
+            
+            System.out.println("");
+        }*/
         
-        return 0;
     }
-    
+
     public void criarVenda() {
         //Se o se identiificar 10% desconto, senao faz a compra normal
-        
+
         // cadastrar cliente ou nao
         Venda v = new Venda();
         System.out.print("Deseja se identificar? (S=1 / N=0): ");
         int opcao = scan.nextInt();
         scan.nextLine();
         if (opcao == 1) {
-            
+
             //se o cliente tem cadastro, pesquisa por codigo
             Scanner scan = new Scanner(System.in);
             System.out.print("Digite o codigo do cliente: ");
@@ -123,50 +129,54 @@ public class VendaView {
             Cliente c = controllers.ClientesController.buscarPorCodigo(codCliente);
             if (c != null) {
                 v.setCliente(c);
-                fazerPedido(v);
+                fazerPedido(v, opcao);
             }
-        }else if(opcao == 0){
-            
-        fazerPedido(v);
-        //v.setCliente();
+        } else if (opcao == 0) {
+
+            fazerPedido(v, opcao);
+            //v.setCliente();
         }
     }
 
-    private double fazerPedido(Venda v) {
-        
+    private double fazerPedido(Venda v, int opcao) {
+
         double totalVenda = 0;
-        //if (v.getCliente() != null) {
 
-            int codLanche =0;
-            do {
-                System.out.print("Digite o codigo do lanche: ");
-                codLanche = scan.nextInt();
-                scan.nextLine();
+        int codLanche = 0;
+        do {
+            System.out.print("Digite o codigo do lanche: ");
+            codLanche = scan.nextInt();
+            scan.nextLine();
 
-                Lanche l = controllers.LanchesController.buscarPorCodigo(codLanche);
-                
-                if (l != null) {
-                    totalVenda = totalVenda + l.getPreco();
-                    v.getLanches().add(l);
-                    //double valorAPagar = v.getValorVenda();
-                    //double totalCliente = (v.getValorVenda()*10) / 100;
-                    
-                    BancoDadosLanchonete.getTabelaVenda().add(v);
-                } else {
-                    System.out.println("Lanche não cadastrado");
-                }
-            } while (codLanche != 0);
-            
-            System.out.println("O total a ser pago é de: R$"+ totalVenda);
+            Lanche l = controllers.LanchesController.buscarPorCodigo(codLanche);
+
+            if (l != null) {
+                totalVenda = totalVenda + l.getPreco();
+                v.getLanches().add(l);
+
+                BancoDadosLanchonete.getTabelaVenda().add(v);
+            } else {
+                System.out.println("Lanche não cadastrado");
+            }
+        } while (codLanche != 0);
+        
+        if (v.getCliente() != null) {
+            totalVenda = (totalVenda * 10) / 100;
+        }
+
+        if (v.getCliente() != null) {
+            totalVenda -= (totalVenda * 10) / 100;
+            //totalVenda -=totalVenda*0.10;
+            System.out.println("O total a ser pago é de: R$" + df.format(totalVenda));
             System.out.println("Compra realizada com sucesso!");
-        /*} else {
-            System.out.println("Cliente não cadastrado");
-        }*/
-        /*if ( != null) {
-            return totalVenda*10/100;
-        }else{
             return totalVenda;
-        }*/
-        return totalVenda;
+        } else {
+            System.out.println("O total a ser pago é de: R$" + df.format(totalVenda));
+            System.out.println("Compra realizada com sucesso!");
+            return totalVenda;
+        }
+
+        //alt + shift + f
+        //return totalVenda;
     }
 }
