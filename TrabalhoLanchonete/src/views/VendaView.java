@@ -10,7 +10,8 @@ import models.Venda;
 import views.LancheView;
 
 public class VendaView {
-
+    double totVenda = 0;
+    
     Scanner scan = new Scanner(System.in);
 
     DecimalFormat df = new DecimalFormat("#.00");
@@ -65,7 +66,8 @@ public class VendaView {
         System.out.println("");
         System.out.println("----------LANCHES----------");
         System.out.println("1 - Efetuar venda");
-        System.out.println("2 - Voltar");
+        System.out.println("2 - Total de vendas");
+        System.out.println("3 - Voltar");
         System.out.print("Informe a opção desejada: ");
         int op = scan.nextInt();
         scan.nextLine();
@@ -83,8 +85,11 @@ public class VendaView {
                     //clienteCadastrado();
                     criarVenda();
                     break;
+                case 2:
+                    totVenda();
+                    break;
             }
-        } while (opcao != 2);
+        } while (opcao != 3);
     }
 
     private void exibirLanches() {
@@ -101,14 +106,7 @@ public class VendaView {
     }
     
     public void totVenda(){
-        /*double totVenda = 0;
-        totVenda = totVenda + v.
-        for (Venda v : BancoDadosLanchonete.getTabelaVenda()) {
-            System.out.println("");
-            
-            System.out.println("");
-        }*/
-        
+        System.out.println("O total de vendas é de R$"+ totVenda);
     }
 
     public void criarVenda() {
@@ -160,19 +158,21 @@ public class VendaView {
             }
         } while (codLanche != 0);
         
-        if (v.getCliente() != null) {
+        /*if (v.getCliente() != null) {
             totalVenda = (totalVenda * 10) / 100;
-        }
+        }*/
 
         if (v.getCliente() != null) {
             totalVenda -= (totalVenda * 10) / 100;
             //totalVenda -=totalVenda*0.10;
             System.out.println("O total a ser pago é de: R$" + df.format(totalVenda));
             System.out.println("Compra realizada com sucesso!");
+            totVenda += totalVenda;
             return totalVenda;
         } else {
             System.out.println("O total a ser pago é de: R$" + df.format(totalVenda));
             System.out.println("Compra realizada com sucesso!");
+            totVenda += totalVenda;
             return totalVenda;
         }
 

@@ -32,7 +32,15 @@ public class Venda {
     public void setQtdLanche(int qtdLanche) {
         this.qtdLanche = qtdLanche;
     }
-
+    
+    public double tot(){
+        double tot = 0;
+        for (Lanche l : lanches) {
+           // tot += .l.getPreco();
+        }
+        return tot;
+    }
+    
     public double getValorVenda() {
         double precoFinal = 0;
         for (Lanche l : lanches) {
