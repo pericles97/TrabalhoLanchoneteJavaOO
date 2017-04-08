@@ -15,7 +15,7 @@ public class MenuInicioView {
     private int inicio() {
         Scanner scan = new Scanner(System.in);
         System.out.println("");
-        System.out.println("---------Sistema bicicletaria-------------");
+        System.out.println("---------Sistema Lanchonete-------------");
         System.out.println("1 - Cadastro de clientes");
         System.out.println("2 - Cadastro de lanches");
         System.out.println("3 - Efetuar vendas");
